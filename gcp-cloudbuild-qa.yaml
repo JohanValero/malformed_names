@@ -5,7 +5,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'pull',
-      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names/app:qa-$COMMIT_SHA'
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names/app:$COMMIT_SHA'
     ]
   # Aquí se pueden agregar pasos adicionales para testing automatico y pruebas de ambiente.
   # Se llama al comando "docker push" para subir la imagen etiquetada al registro de GCP Container Registry.
