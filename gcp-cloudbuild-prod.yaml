@@ -1,0 +1,32 @@
+steps:
+  # Construye la imagen Docker.
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t',
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names/app:$COMMIT_SHA'
+      '.'
+    ]
+  # Aquí se pueden agregar pasos adicionales para testing automatico y pruebas de ambiente.
+  # Se llama al comando "docker push" para subir la imagen etiquetada al registro de GCP Container Registry.
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push',
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names/app:$COMMIT_SHA'
+    ]
+  # Se despliega el servicio en Cloud Run.
+  # Se desplegará la API en Cloud run en la región "us-central1".
+  # Usará solamente la última imagen compilada para el commit exacto.
+  # La imagen de la aplicación se obtiene de la imagen previamente publicada.
+  # El parámetro "--allow-unauthenticated" indica que la aplicación podrá ser
+  # accedida por cualquier usuario sin necesidad de autenticación.
+  # Nota: "--allow-unauthenticated" es un riesgo de seguridad, y no debe
+  # ser usado para servicios sensibles.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: [
+      'run', 'deploy', 'app-repair-names',
+      '--image', 'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names/app:$COMMIT_SHA',
+      '--region', 'us-central1',
+      '--allow-unauthenticated'
+    ]
