@@ -3,3 +3,4 @@ pandas==1.5.3
 fuzzywuzzy[speedup]==0.18.0
 Metaphone==0.6
 Flask==2.2.3
+gunicorn
