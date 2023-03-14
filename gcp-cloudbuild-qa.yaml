@@ -4,7 +4,7 @@ steps:
     args: [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names/app:$COMMIT_SHA',
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names-qa/app:$COMMIT_SHA',
       '.'
     ]
   # Aquí se pueden agregar pasos adicionales para testing automatico y pruebas de ambiente.
@@ -12,5 +12,5 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push',
-      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names/app:$COMMIT_SHA'
+      'us-central1-docker.pkg.dev/${PROJECT_ID}/api-malformed-names-qa/app:$COMMIT_SHA'
     ]
