@@ -21,8 +21,10 @@ from flask import Flask, jsonify, request, Response # Para crear el servidor web
 
 # Leemos el archivo CSV que contiene el conjunto de datos de nombres que utilizaremos.
 cDATASET_OF_NAMES = pd.read_csv("resources/export_full_dataset.csv")
+
 # Definimos una expresión regular para buscar y eliminar caracteres repetidos en una cadena de texto.
 cREGEX_NOT_REPEATED = re.compile(r"(.)\1+")
+
 # Definimos una lista de consonantes en español.
 # No se toma en cuenta la letra "Y", porque esta puede tomar el rol de vocal.
 # En nombres como "Nataly", donde se usa como reemplazo de la vocal "i".
